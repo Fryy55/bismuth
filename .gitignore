@@ -1,0 +1,9 @@
+# Workspace
+*.code-workspace
+
+# Build
+.cache/
+build/
+
+# Local
+test/
