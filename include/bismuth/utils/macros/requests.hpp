@@ -3,20 +3,10 @@
 #include <dpp/queues.h>
 
 
-namespace bismuth::utils::impl {
-
-/**
- * @attention Implement this function to handle @ref REQUEST_VERIFICATION macros failing
- * 
- */
-void requestFailed(dpp::http_request_completion_t const& request, std::size_t tag);
-
-}
-
 #define REQUEST_VERIFICATION(request, tag)                         \
 	do {                                                           \
 		if ((request).status != 200) {                             \
-			bismuth::utils::impl::requestFailed((request), (tag)); \
+			BISMUTH_HANDLE_REQUEST_FAILED((tag));                  \
 			return;                                                \
 		}                                                          \
 	} while (false)
@@ -24,7 +14,7 @@ void requestFailed(dpp::http_request_completion_t const& request, std::size_t ta
 #define REQUEST_VERIFICATION_CORO(request, tag)                    \
 	do {                                                           \
 		if ((request).status != 200) {                             \
-			bismuth::utils::impl::requestFailed((request), (tag)); \
+			BISMUTH_HANDLE_REQUEST_FAILED_CORO((tag));             \
 			co_return;                                             \
 		}                                                          \
 	} while (false)

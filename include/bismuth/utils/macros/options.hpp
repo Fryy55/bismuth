@@ -1,21 +1,11 @@
 #pragma once
 
 
-namespace bismuth::utils::impl {
-
-/**
- * @attention Implement this function to handle @ref OPTIONS_PRELUDE macros not having any options passed
- * 
- */
-void noOptions();
-
-}
-
 #define OPTIONS_PRELUDE(eventPointer)                                                \
 	auto const& options = (eventPointer)->command.get_command_interaction().options; \
 	do {                                                                             \
 		if (options.empty()) {                                                       \
-			bismuth::utils::impl::noOptions();                                       \
+			BISMUTH_HANDLE_NO_OPTIONS;                                               \
 			return;                                                                  \
 		}                                                                            \
 	} while (false)
@@ -24,7 +14,7 @@ void noOptions();
 	auto const& options = (eventPointer)->command.get_command_interaction().options; \
 	do {                                                                             \
 		if (options.empty()) {                                                       \
-			bismuth::utils::impl::noOptions();                                       \
+			BISMUTH_HANDLE_NO_OPTIONS_CORO;                                          \
 			co_return;                                                               \
 		}                                                                            \
 	} while (false)
