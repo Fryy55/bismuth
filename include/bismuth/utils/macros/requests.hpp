@@ -3,36 +3,36 @@
 #include <dpp/queues.h>
 
 
-#define REQUEST_VERIFICATION(request, tag)                         \
-	do {                                                           \
-		if ((request).status != 200) {                             \
-			BISMUTH_HANDLE_REQUEST_FAILED((tag));                  \
-			return;                                                \
-		}                                                          \
+#define REQUEST_VERIFICATION(request, tag) \
+	do { \
+		if ((request).status != 200) { \
+			BISMUTH_HANDLE_REQUEST_FAILED((request), (tag)); \
+			return; \
+		} \
 	} while (false)
 
-#define REQUEST_VERIFICATION_CORO(request, tag)                    \
-	do {                                                           \
-		if ((request).status != 200) {                             \
-			BISMUTH_HANDLE_REQUEST_FAILED_CORO((tag));             \
-			co_return;                                             \
-		}                                                          \
+#define REQUEST_VERIFICATION_CORO(request, tag) \
+	do { \
+		if ((request).status != 200) { \
+			BISMUTH_HANDLE_REQUEST_FAILED_CORO((request), (tag)); \
+			co_return; \
+		} \
 	} while (false)
 
-#define REQUESTS_VERIFICATION(tagOffset, ...)         \
-	do {                                              \
-		std::size_t tag = tagOffset;                  \
+#define REQUESTS_VERIFICATION(tagOffset, ...) \
+	do { \
+		std::size_t tag = tagOffset; \
 		for (auto const& request : { __VA_ARGS__ }) { \
-			REQUEST_VERIFICATION(request, tag);       \
-			++tag;                                    \
-		}                                             \
+			REQUEST_VERIFICATION(request, tag); \
+			++tag; \
+		} \
 	} while (false)
 
-#define REQUESTS_VERIFICATION_CORO(tagOffset, ...)    \
-	do {                                              \
-		std::size_t tag = tagOffset;                  \
+#define REQUESTS_VERIFICATION_CORO(tagOffset, ...) \
+	do { \
+		std::size_t tag = tagOffset; \
 		for (auto const& request : { __VA_ARGS__ }) { \
-			REQUEST_VERIFICATION_CORO(request, tag);  \
-			++tag;                                    \
-		}                                             \
+			REQUEST_VERIFICATION_CORO(request, tag); \
+			++tag; \
+		} \
 	} while (false)

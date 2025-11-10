@@ -9,7 +9,7 @@ Offers general purpose classes/utilities I made for using in my [D++](https://dp
     - Macros
         - `check-for-channels.hpp` - normal/coro macros for returning from a `void`/`dpp::task<void>` returning function when the channel in an event doesn't match the specified one
         - `options.hpp` - normal/coro macros for working with command options and subcommands. Check the implementation in the header for more info and **make sure to define `BISMUTH_HANDLE_NO_OPTIONS` and `BISMUTH_HANDLE_NO_OPTIONS_CORO` macros**!
-        - `requests.hpp` - normal/coro macros for verifying requests. Also allows to assign numeric tags to request for easier understanding of what exactly failed. **Make sure to define `BISMUTH_HANDLE_REQUEST_FAILED(tag)` and `BISMUTH_HANDLE_REQUEST_FAILED_CORO(tag)` macros**!
+        - `requests.hpp` - normal/coro macros for verifying requests. Also allows to assign numeric tags to request for easier understanding of what exactly failed. **Make sure to define `BISMUTH_HANDLE_REQUEST_FAILED(request, tag)` and `BISMUTH_HANDLE_REQUEST_FAILED_CORO(request, tag)` macros**!
 
 # Usage
 ## Installing
