@@ -1,10 +1,10 @@
 # Security Policy
 
 ## Supported Versions
-| Version | GD Version | Supported          |
-| ------- | ---------- | ------------------ |
-| 1.0.1   | 2.2074     | :white_check_mark: |
-| 1.0.0   | 2.2074     | :white_check_mark: |
+| Version | Supported          |
+| ------- | ------------------ |
+| 1.0.1   | :white_check_mark: |
+| 1.0.0   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
